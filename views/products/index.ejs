@@ -1,0 +1,52 @@
+<%- include('./partials/header') %>
+<%- include('./partials/navbar') %>
+<%- include('./partials/flash') %> 
+<div class="row mt-5">
+
+    <% for(let item of products){ %>
+
+        <div class="col-lg-4 product-card">
+            <div class="card text-center shadow mt-3 mx-auto" style="width: 18rem;">
+                <img src="<%=item.img%>" class="card-img-top img" alt="..." height="250">
+                <div class="card-body">
+                  <h3 class="card-title">
+                    <span>
+                      <%= item.name %>
+                    </span> 
+                  
+                  <span class="btn like-btn" product-id="<%=item._id%>">
+                    <% if(currentUser && currentUser.wishlist.includes(item._id)){ %>
+                      <i class="fas fa-heart"></i>
+                      <% } else { %>
+                        <i class="far fa-heart"></i>
+                      <% } %>
+                    }
+                  </span>
+                </h3>
+                  <h5 class="card-title"> Rs: <%= item.price %> </h5>
+                  <p class="card-text"> <%= item.desc.substring(0,20) %>... </p>
+                  <% if(item.reviews.length) { %>
+                        <p class="text-muted"><%=item.reviews.length%> review</p>
+                  <%} else { %>
+                    <p class="text-muted">No reviews</p>
+
+                  <%} %>
+
+
+                  <a href="/products/<%= item._id %>" class="btn btn-primary">View Product</a>
+                  <% if(currentUser && currentUser.role=='seller'){ %>
+                    <form class="d-inline-block" action="/products/<%=item._id%>?_method=DELETE" method="POST">
+                      <button class="btn btn-danger btn-sm">Delete</button>
+                  </form>
+                    <% } %>
+                    
+                  </div>
+            </div>
+        </div>
+        
+    <% } %>
+</div>
+
+
+
+<%- include('./partials/footer') %>

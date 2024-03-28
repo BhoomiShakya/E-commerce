@@ -1,0 +1,52 @@
+
+<%- include('./header') %>
+
+<nav class="navbar fixed-top navbar-expand-lg" style="background-color: white;">
+    <div class="container">
+      <a class="navbar-brand" href="/products">Shopping App</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarScroll">
+        <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="#">Home</a>
+          </li>
+          <!-- <% if(currentUser && currentUser.role=='seller'){ %>
+            <li class="nav-item">
+              <a class="nav-link" href="/product/new">New</a>
+            </li>
+          <%}%> -->
+          <% if(currentUser && currentUser.role=='seller'){ %>
+            <li class="nav-item">
+              <a class="nav-link" href="/product/new">New</a>
+            </li>
+          <% } %>
+          
+          
+          
+        </ul>
+        <div class="d-flex justify-content-center align-items-center" role="search">
+          <% if(!currentUser){ %>
+            <a href="/login" class="nav-link mx-2">Login</a>
+          <% } else{ %>
+            <!-- <p style="text-align:center"></p> -->
+            <ul class="nav navbar-nav mx-auto">
+              <li class="nav-item"><a class="nav-link" href="#">Hello <%= currentUser.username.toUpperCase() %></a></li>
+          </ul>
+            <a href="/user/cart" class="nav-link mx-2">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
+                <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l1.313 7h8.17l1.313-7zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>
+              </svg>
+              <sup><span class="badge bg-danger"><%= currentUser.cart.length %></span></sup>
+            </a>
+            <a href="/logout" class="nav-link mx-2">Logout</a>
+           <% } %>
+           
+
+          
+        </div>
+      </div>
+    </div>
+</nav>

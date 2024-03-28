@@ -1,0 +1,19 @@
+<%- include('../products/partials/header') %>
+<%- include('../products/partials/flash') %>
+
+<body>
+    <h1>Login Page</h1>
+    <form action="/login" method="POST">
+        <div>
+            <label for="naam" class="form-label">UserName: </label>
+            <input type="text" class="form-control" name="username" id="naam" placeholder="Username" required>
+        </div>
+        <div>
+            <label for="pass" class="form-label">Password: </label>
+            <input type="text" class="form-control" name="password" id="pass" placeholder="Password" required>
+        </div>
+        <button type="submit">Login</button>
+        <p>Don't have an account? <a href="/register">Sign up</a></p>
+    </form>
+</body>
+</html>
